@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { Bot } from "grammy"
+import { Bot, webhookCallback } from "grammy"
 import dotenv from "dotenv";
 import express from "express";
 
