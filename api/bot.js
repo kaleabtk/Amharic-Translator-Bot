@@ -55,20 +55,21 @@ bot.on("message:text", async (ctx) => {
 // console.log("Bot starting");
 
 
-// Use the port from environment variables or default to 3000
-const PORT = process.env.PORT || 3000;
+// // Use the port from environment variables or default to 3000
+// const PORT = process.env.PORT || 3000;
 
-// // The endpoint Telegram will send updates to
-app.use("/webhook", webhookCallback(bot, "express"));
+// // // The endpoint Telegram will send updates to
+// app.use("/webhook", webhookCallback(bot, "express"));
 
-// A simple route to check if the server is running
-app.get("/", (req, res) => {
-    res.send("The server is running.");
-});
+// // A simple route to check if the server is running
+// app.get("/", (req, res) => {
+//     res.send("The server is running.");
+// });
 
-app.listen(PORT, () => {
-    console.log(`Bot is running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Bot is running on port ${PORT}`);
+// });
 
-console.log("Bot starting");
+export default webhookCallback(bot, "http");
+
 
