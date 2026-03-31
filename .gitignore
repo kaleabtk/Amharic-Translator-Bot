@@ -1,0 +1,31 @@
+
+# Dependency directories
+node_modules/
+.pnp/
+.pnp.js
+
+# Environment variables
+.env
+.env.*
+
+# Optional npm cache directory
+.npm
+
+# Build output
+dist/
+build/
+
+
+# Editor directories and files
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local history and temporary files
+.cache/
+tmp/
+temp/
+~*
+
