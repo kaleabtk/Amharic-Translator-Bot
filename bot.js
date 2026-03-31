@@ -1,11 +1,15 @@
 import OpenAI from "openai";
 import { Bot } from "grammy"
 import dotenv from "dotenv";
+import express from "express";
 
 dotenv.config();
 
-const bot = new Bot(process.env.BOT_TOKEN);
+// Initialize Express app
+const app = express();
+app.use(express.json()); // for parsing Telegram updates
 
+const bot = new Bot(process.env.BOT_TOKEN);
 const token = process.env.API_TOKEN;
 const endpoint = "https://models.github.ai/inference";
 const modelName = "openai/gpt-4o";
@@ -45,9 +49,26 @@ bot.on("message:text", async (ctx) => {
 
 });
 
-bot.start({
-    drop_pending_updates: true
-});
-console.log("Bot starting");
+// bot.start({
+//     drop_pending_updates: true
+// });
+// console.log("Bot starting");
 
+
+// Use the port from environment variables or default to 3000
+const PORT = process.env.PORT || 3000;
+
+// // The endpoint Telegram will send updates to
+app.use("/webhook", webhookCallback(bot, "express"));
+
+// A simple route to check if the server is running
+app.get("/", (req, res) => {
+    res.send("The server is running.");
+});
+
+app.listen(PORT, () => {
+    console.log(`Bot is running on port ${PORT}`);
+});
+
+console.log("Bot starting");
 
